@@ -11,7 +11,8 @@
 # **************************************************************************** #
 
 NAME =	libftprintf.a
-SRCS =	
+SRCS =	ft_printf.c \
+		ft_prinft_utils.c
 FLAGS = -Wall -Wextra -Werror
 OBJS =	$(%.c=%.o)
 CC = 	clang
