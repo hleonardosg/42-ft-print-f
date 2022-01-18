@@ -6,7 +6,7 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 18:44:50 by coder             #+#    #+#             */
-/*   Updated: 2022/01/16 20:24:28 by coder            ###   ########.fr       */
+/*   Updated: 2022/01/18 04:41:04 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,51 @@ int	ft_putnbr(int nb)
 	}
 	ft_print_values(result, index, negative_control);
 	return (index++);
+}
+
+int ft_print_hexa(unsigned long int nb)
+{
+	char	*base;
+	char	temp[30];
+	int		size;
+	int		index;
+
+	base = "0123456789abcdef";
+	size = 0;
+	index = 0;
+	if (nb == 0)
+		return (ft_putstr("(nil)"));
+	while (nb > 0)
+	{
+		temp[index++] = base[nb % 16];
+		nb /= 16;
+		size++; 
+	}
+	write(1, "0x", 2);
+	while (index-- > 0)
+		ft_putchar(temp[index]);
+	return (size);	
+}
+
+int ft_print_decimal(unsigned long int nb)
+{
+	char	*base;
+	char	temp[30];
+	int		size;
+	int		index;
+
+	base = "0123456789";
+	size = 0;
+	index = 0;
+	if (nb == 0)
+		return (ft_putstr("(nil)"));
+	while (nb > 0)
+	{
+		temp[index++] = base[nb % 10];
+		nb /= 10;
+		size++; 
+	}
+	while (index-- > 0)
+		ft_putchar(temp[index]);
+	return (size);	
 }

@@ -19,5 +19,7 @@
 int	ft_putchar(char c);
 int	ft_putstr(char *str);
 int	ft_putnbr(int nb);
+int ft_print_hexa(unsigned long int nb);
+int ft_print_decimal(unsigned long int nb);
 
 #endif

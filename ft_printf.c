@@ -29,7 +29,9 @@ static int ft_printf_args(const char *format, va_list args)
 			else if (*format == 'd' || *format == 'i')
 				size += ft_putnbr(va_arg(args, int));
 			else if (*format == 'u')
-				size += ft_putnbr(va_arg(args, unsigned int));
+				size += ft_print_decimal(va_arg(args, unsigned int));
+			else if (*format == 'p')
+				size += ft_print_hexa(va_arg(args, unsigned int));
 			else
 				size += ft_putchar(*format);
 			*format++;
@@ -37,6 +39,7 @@ static int ft_printf_args(const char *format, va_list args)
 		else
 			size += ft_putchar(*format++);
 	}
+	return (size);
 }
 
 int ft_printf(const char *format, ...)
@@ -53,7 +56,8 @@ int ft_printf(const char *format, ...)
 
 int	main(void)
 {
-	ft_printf("Teste %u\n\n\n\n",-100);
-	printf("Decimal:\t%u\n", 100);
+	
+	ft_printf("Teste %u\n\n\n\n",-200);
+	printf("Decimal:\t%u\n", -200);
 	return (0);
 }
