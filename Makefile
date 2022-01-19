@@ -11,10 +11,10 @@
 # **************************************************************************** #
 
 NAME =	libftprintf.a
-SRCS =	ft_printf.c \
-		ft_prinft_utils.c
+SRCS =	ft_printf_utils.c \
+		ft_printf.c
 FLAGS = -Wall -Wextra -Werror
-OBJS =	$(%.c=%.o)
+OBJS =	$(SRCS:%.c=%.o)
 CC = 	clang
 
 all: $(NAME)
@@ -32,7 +32,7 @@ clean:
 	@echo "Clean done successfully"	
 
 fclean: clean
-	rm -f $(NAME)
+	rm -rf $(NAME)
 	@echo "Clean done successfully"	
 
 re: fclean all
