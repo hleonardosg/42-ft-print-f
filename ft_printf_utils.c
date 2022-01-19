@@ -6,7 +6,7 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 18:44:50 by coder             #+#    #+#             */
-/*   Updated: 2022/01/19 04:13:17 by coder            ###   ########.fr       */
+/*   Updated: 2022/01/19 05:59:26 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	ft_putstr(char *str)
 	int	count;
 
 	count = 0;
+	if (!str)
+		return (ft_putstr("(null)"));
 	while (str[count] != '\0')
 	{
 		write(1, &str[count], 1);
@@ -42,32 +44,33 @@ int	ft_is_min_integer(int nb)
 		return (0);
 }
 
-void	ft_print_values(char values[], int index, int negative_control)
+int	ft_print_values(char values[], int index, int size)
 {
 	if (index < 0)
 		index = 0;
 	while (index >= 0)
 	{
-		if (index == 0 && negative_control == 1)
-			values[index] = values[index] + 1;
 		write(1, &values[index], 1);
 		index--;
+		size++;
 	}
+	return (size);
 }
 
 int	ft_putnbr(int nb)
 {
 	char	result[10];
 	int		index;
-	int		negative_control;
+	int		size;
 
 	index = -1;
-	negative_control = ft_is_min_integer(nb);
+	size = 0;
 	if (nb < 0)
 	{
+		if (nb == -2147483648)
+			return (write(1, "-2147483648", 11));
 		write(1, "-", 1);
-		if (negative_control == 1)
-			nb++;
+		size += 1;
 		nb *= -1;
 	}
 	if (nb == 0)
@@ -80,6 +83,5 @@ int	ft_putnbr(int nb)
 			nb /= 10;
 		}
 	}
-	ft_print_values(result, index, negative_control);
-	return (index++);
+	return (ft_print_values(result, index, size));
 }

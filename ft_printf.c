@@ -24,7 +24,7 @@ static int	ft_print_hexa_p(unsigned long int nb)
 	index = 0;
 	if (nb == 0)
 		return (ft_putstr("(nil)"));
-	while (nb > 0)
+	while (nb != 0)
 	{
 		temp[index++] = base[nb % 16];
 		nb /= 16;
@@ -36,7 +36,7 @@ static int	ft_print_hexa_p(unsigned long int nb)
 	return (size);
 }
 
-static int	ft_print_decimal(unsigned long int nb)
+static int	ft_print_decimal(unsigned int nb)
 {
 	char	*base;
 	char	temp[30];
@@ -46,6 +46,8 @@ static int	ft_print_decimal(unsigned long int nb)
 	base = "0123456789";
 	size = 0;
 	index = 0;
+	if (nb == 0)
+		return (ft_putstr("0"));
 	while (nb > 0)
 	{
 		temp[index++] = base[nb % 10];
@@ -57,7 +59,7 @@ static int	ft_print_decimal(unsigned long int nb)
 	return (size);
 }
 
-static int	ft_print_hexa(unsigned long int nb, const char format)
+static int	ft_print_hexa(unsigned int nb, const char format)
 {
 	char	*base;
 	char	temp[30];
@@ -71,7 +73,7 @@ static int	ft_print_hexa(unsigned long int nb, const char format)
 	size = 0;
 	index = 0;
 	if (nb == 0)
-		return (ft_putstr("(nil)"));
+		return (ft_putstr("0"));
 	while (nb > 0)
 	{
 		temp[index++] = base[nb % 16];
@@ -100,7 +102,7 @@ static int	ft_printf_args(const char *format, va_list args, int size)
 			else if (*format == 'x' || *format == 'X')
 				size += ft_print_hexa(va_arg(args, unsigned int), *format);
 			else if (*format == 'p')
-				size += ft_print_hexa_p(va_arg(args, unsigned int));
+				size += ft_print_hexa_p(va_arg(args, unsigned long int));
 			else
 				size += ft_putchar(*format);
 			format++;
