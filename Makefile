@@ -15,7 +15,7 @@ SRCS =	ft_printf_utils.c \
 		ft_printf.c
 FLAGS = -Wall -Wextra -Werror
 OBJS =	$(SRCS:%.c=%.o)
-CC = 	clang
+CC = 	gcc
 
 all: $(NAME)
 
